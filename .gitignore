@@ -1,0 +1,5 @@
+MongoRedisDbEngine/bin/
+MongoRedisDbEngine/obj/
+.vs/
+MongoRedisDbEngine.Core/bin/
+MongoRedisDbEngine.Core/obj/
