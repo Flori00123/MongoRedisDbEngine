@@ -16,10 +16,12 @@ namespace MongoRedisDbEngine.Core.Operations
             this.cache = cache;
         }
 
-        public void Insert<T>(string collection, T model)
+        public T Insert<T>(T model)
         {
+            string collection = typeof(T).Name;
             var collectionfromdb = database.GetCollection<T>(collection);
             collectionfromdb.InsertOne(model);
+            return model;
         }
     }
 }
