@@ -2,9 +2,7 @@
 using MongoDB.Driver;
 using MongoRedisDbEngine.Core.Operations;
 using StackExchange.Redis;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MongoRedisDbEngine.Core
 {
