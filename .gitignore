@@ -1,5 +1,5 @@
-MongoRedisDbEngine/bin/
-MongoRedisDbEngine/obj/
+MongoRedisDbEngine.Test/bin/
+MongoRedisDbEngine.Test/obj/
 .vs/
 MongoRedisDbEngine.Core/bin/
 MongoRedisDbEngine.Core/obj/
