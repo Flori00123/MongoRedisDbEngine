@@ -1,13 +1,9 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoRedisDbEngine.Core.Models;
 
 namespace MongoRedisDbEngine.Models
 {
-    public class Test
+    public class Test : DbTable
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
         public string Title { get; set; }
     }
 }

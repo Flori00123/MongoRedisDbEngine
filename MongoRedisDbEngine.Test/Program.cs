@@ -1,7 +1,5 @@
-﻿using MongoDB.Driver;
-using MongoRedisDbEngine.Core;
+﻿using MongoRedisDbEngine.Core;
 using MongoRedisDbEngine.Models;
-using System;
 
 namespace MongoRedisDbEngine
 {
@@ -17,7 +15,7 @@ namespace MongoRedisDbEngine
             var testmodel3 = engine.Get.GetOne<Test>(testus);
 
             testmodel3.Title = "Testus";
-            engine.Put.PutOne(testmodel3.Id, testmodel3);
+            engine.Put.PutOne(testmodel3);
             var testmodel4 = engine.Get.GetOne<Test>(testus);
 
             engine.Remove.DeleteOne<Test>(test.Id);

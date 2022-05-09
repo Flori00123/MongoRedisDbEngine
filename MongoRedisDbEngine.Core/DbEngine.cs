@@ -13,7 +13,6 @@ namespace MongoRedisDbEngine.Core
         public Put Put { get; set; }
         public Remove Remove { get; set; }
 
-        internal MongoClient dbClient { get; set; }
         internal IMongoDatabase database { get; set; }
         internal IDatabase cache { get; set; }
 
@@ -32,11 +31,6 @@ namespace MongoRedisDbEngine.Core
             Get = new Get(this.database, this.cache);
             Put = new Put(this.database, this.cache);
             Remove = new Remove(this.database, this.cache);
-        }
-
-        public List<BsonDocument> getDatabase()
-        {
-            return dbClient.ListDatabases().ToList();
         }
     }
 }

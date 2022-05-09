@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MongoRedisDbEngine.Core.Operations
@@ -40,17 +41,33 @@ namespace MongoRedisDbEngine.Core.Operations
             }
         }
 
-        public T GetOneByFilter<T>(string key, string value)
+        public T GetOneByFilter<T>(string key, string value, bool throwExceptionWhenMore = true)
+        {
+            var result = GetManyByFilter<T>(key, value);
+            if (result.Count > 1)
+            {
+                if (throwExceptionWhenMore)
+                    throw new Exception("More than one on one result!");
+            }
+            return result[0];
+        }
+
+        public List<T> GetMany<T>(List<string> ids)
+        {
+            List<T> results = new List<T>();
+            foreach (var id in ids)
+            {
+                results.Add(GetOne<T>(id));
+            }
+            return results;
+        }
+
+        public List<T> GetManyByFilter<T>(string key, string value)
         {
             string collection = typeof(T).Name;
             var collectionfromdb = database.GetCollection<T>(collection);
             var filter = Builders<T>.Filter.Eq(key, value);
-            var result = collectionfromdb.Find(filter).ToList();
-            if (result.Count > 1)
-            {
-                throw new Exception("More than one on one result!");
-            }
-            return result[0];
+            return collectionfromdb.Find(filter).ToList();
         }
     }
 }
