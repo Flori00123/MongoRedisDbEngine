@@ -18,7 +18,7 @@ namespace MongoRedisDbEngine
             engine.Put.PutOne(testmodel3);
             var testmodel4 = engine.Get.GetOne<Test>(testus);
 
-            engine.Remove.DeleteOne<Test>(test.Id);
+            engine.Remove.DeleteOne(test);
         }
     }
 }

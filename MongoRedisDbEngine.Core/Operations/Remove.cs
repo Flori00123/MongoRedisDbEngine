@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoRedisDbEngine.Core.Models;
 using StackExchange.Redis;
 using System;
@@ -27,7 +28,7 @@ namespace MongoRedisDbEngine.Core.Operations
             }
 
             var collectionfromdb = database.GetCollection<T>(collection);
-            var filter = Builders<T>.Filter.Eq("_id", id);
+            var filter = Builders<T>.Filter.Eq("_id", new ObjectId(id));
             var result = collectionfromdb.DeleteOne(filter);
             return result.IsAcknowledged;
         }
@@ -43,7 +44,7 @@ namespace MongoRedisDbEngine.Core.Operations
             }
 
             var collectionfromdb = database.GetCollection<T>(collection);
-            var filter = Builders<T>.Filter.Eq("_id", model.Id);
+            var filter = Builders<T>.Filter.Eq("_id", new ObjectId(model.Id));
             var result = collectionfromdb.DeleteOne(filter);
             return result.IsAcknowledged;
         }
